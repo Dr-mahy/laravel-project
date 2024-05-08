@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\StudentController;
+Route::get('insertclient',[ClientController::class,'store']);
 Route::get('test20',[Mycontroller::class,'my_data']);
+Route::post('studentdata',[StudentController::class,'store'])->name('studentdata');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,3 +38,12 @@ Route::post('recform1',function(){
 //     // return 'the page not found';
 //     return redirect('/');
 // });
+// _______other way to view the form inputs through view________
+// Route::post('input',function(){
+//     return view('input');
+// })->name('inputdata');
+Route::get('addclient', [ClientController::class,'create']);
+Route::post('insertclient',[ClientController::class,'store'])->name('insertclient');
+Route::get('addstudent',function(){
+    return view('addstudent');
+});
