@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 Route::get('insertclient',[ClientController::class,'store']);
 Route::get('test20',[Mycontroller::class,'my_data']);
 Route::post('studentdata',[StudentController::class,'store'])->name('studentdata');
+Route::get('students',[StudentController::class,'index'])->name('students');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,8 +43,7 @@ Route::post('recform1',function(){
 // Route::post('input',function(){
 //     return view('input');
 // })->name('inputdata');
-Route::get('addclient', [ClientController::class,'create']);
+Route::get('addclient', [ClientController::class,'create'])->name('addclient');
 Route::post('insertclient',[ClientController::class,'store'])->name('insertclient');
-Route::get('addstudent',function(){
-    return view('addstudent');
-});
+Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('addstudent',[StudentController::class,'create'])->name('addstudent');
