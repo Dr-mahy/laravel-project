@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Models\Student;
 
 class StudentController extends Controller
@@ -15,6 +16,8 @@ class StudentController extends Controller
     {
         $students=Student::get();
         return view('students',compact('students'));
+    //     $students = DB::select('select * from student');
+    //   return view('students',['student'=>$students]);
     }
 
     /**
@@ -44,7 +47,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student=student::findOrFail($id);
+        return view('showstudent',compact('student'));
     }
 
     /**
@@ -52,7 +56,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student=student::findOrFail($id);
+        return view('editstudent',compact('student'));
     }
 
     /**
@@ -60,7 +65,8 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        student::where('id',$id)->update($request->only($this->columns));
+        return redirect('students');
     }
 
     /**
@@ -68,6 +74,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+      student::where('id',$id)->delete();
+      return redirect('students');
     }
 }

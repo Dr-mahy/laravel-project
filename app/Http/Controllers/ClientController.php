@@ -63,7 +63,8 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client=client::findOrFail($id);
+        return view('showclient',compact('client'));
     }
 
     /**
@@ -71,7 +72,8 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client=client::findOrFail($id);
+        return view('editclient',compact('client'));
     }
 
     /**
@@ -79,14 +81,17 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       Client::where('id',$id)->update($request->only($this->columns));
+       return redirect('clients');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+       $id=$request->id;
+        client::where('id',$id)->delete();
+        return redirect('clients');
     }
 }

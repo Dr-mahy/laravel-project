@@ -8,6 +8,10 @@ Route::get('insertclient',[ClientController::class,'store']);
 Route::get('test20',[Mycontroller::class,'my_data']);
 Route::post('studentdata',[StudentController::class,'store'])->name('studentdata');
 Route::get('students',[StudentController::class,'index'])->name('students');
+Route::get('editstudents/{id}',[StudentController::class,'edit'])->name('editstudents');
+Route::put('updatestudents/{id}',[StudentController::class,'update'])->name('updatestudents');
+Route::get('showstudents/{id}',[StudentController::class,'show'])->name('showstudents');
+Route::delete('deletestudents/{id}',[StudentController::class,'destroy'])->name('deletestudents');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,4 +50,8 @@ Route::post('recform1',function(){
 Route::get('addclient', [ClientController::class,'create'])->name('addclient');
 Route::post('insertclient',[ClientController::class,'store'])->name('insertclient');
 Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('editclient/{id}',[ClientController::class,'edit'])->name('editclient');
+Route::put('updateclient/{id}',[ClientController::class,'update'])->name('updateclient');
+Route::get('showclient/{id}',[ClientController::class,'show'])->name('showclient');
+Route::delete('delclient/{id}',[ClientController::class,'destroy'])->name('delclient');
 Route::get('addstudent',[StudentController::class,'create'])->name('addstudent');
