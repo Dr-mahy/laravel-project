@@ -29,12 +29,32 @@
 <form action="{{route('insertclient')}}" method="post">
     @csrf
   <label for="fname">First name:</label><br>
+  <p style="color:darkmagenta">
+  @error('clientname')
+  {{$message}}
+  @enderror
+  <p >
   <input type="text" id="fname" name="clientname" value="John" class="form-control"><br>
   <label for="phone">phone:</label><br>
+  <p>
+    @error('phone')
+    {{$message}}
+    @enderror
+    <p>
   <input type="text" id="phone" name="phone" value="Doe" class="form-control"><br><br>
   <label for="email">email:</label><br>
+  <p>
+    @error('email')
+    {{$message}}
+    @enderror
+    <p>
   <input type="text" id="email" name="email" value="Doe" class="form-control"><br><br>
   <label for="website">site:</label><br>
+  <p>
+    @error('website')
+    {{$message}}
+    @enderror
+    <p>
   <input type="text" id="lname" name="website" value="Doe" class="form-control"><br><br>
 
 

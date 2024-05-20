@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+// use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 
 class StudentController extends Controller
@@ -16,8 +16,8 @@ class StudentController extends Controller
     {
         $students=Student::get();
         return view('students',compact('students'));
-    //     $students = DB::select('select * from student');
-    //   return view('students',['student'=>$students]);
+    //     $students = DB::select('select * from students');
+    //   return view('students',['students'=>$students]);
     }
 
     /**
@@ -38,7 +38,11 @@ class StudentController extends Controller
         // $student->age=$request->age;
         // $student->save();
         // return "done";
-        student::create($request->only($this->columns));
+        $data=$request->validate([
+            'name'=>'required|max:100|min:5',
+            'age'=>'required',
+        ]);
+        student::create($data);
         return redirect('students');
     }
 
@@ -74,7 +78,26 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-      student::where('id',$id)->delete();
+      Student::where('id',$id)->delete();
       return redirect('students');
+    }
+     // trash
+     public function trash()
+     {
+       $trashed=student::onlyTrashed()->get();
+       return view('trashedstudents',compact('trashed'));
+     }
+        // restore trashed
+    public function restore(string $id)
+    {
+        student::where('id',$id)->restore();
+        return redirect('students');
+    }
+// forcedelete
+    public function forcedelete(Request $request)
+    {
+       $id=$request->id;
+        student::where('id',$id)->forceDelete();
+        return redirect('trashstudents');
     }
 }

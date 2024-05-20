@@ -54,7 +54,14 @@ class ClientController extends Controller
         // $client->website =$request->website;
         // $client->save();
         // return 'Data inserted Successfully :))';
-        client::create($request->only($this->columns));
+        $data=$request->validate([
+            'clientname'=>'required|max:100|min:5',
+            'phone'=>'required',
+            'email'=>'required|email:rfc',
+            'website'=>'required',
+        ]
+        );
+        client::create($data);
         return redirect('clients');
     }
 
@@ -93,5 +100,24 @@ class ClientController extends Controller
        $id=$request->id;
         client::where('id',$id)->delete();
         return redirect('clients');
+    }
+    // trash
+    public function trash()
+    {
+      $trashed=client::onlyTrashed()->get();
+      return view('trashedclients',compact('trashed'));
+    }
+    // restore trashed
+    public function restore(string $id)
+    {
+        client::where('id',$id)->restore();
+        return redirect('clients');
+    }
+// forcedelete
+    public function forcedelete(Request $request)
+    {
+       $id=$request->id;
+        client::where('id',$id)->forcedelete();
+        return redirect('trashedclients');
     }
 }

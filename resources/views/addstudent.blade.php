@@ -14,8 +14,16 @@
 <form action="{{route('studentdata')}}" method="post">
     @csrf
   <label for="fname">name:</label><br>
+  <p style="color:darkmagenta">
+    @error('name')
+    {{$message}}
+    @enderror
   <input type="text" id="name" name="name" value="John" class="form-control"><br>
   <label for="phone">age:</label><br>
+  <p style="color:darkmagenta">
+    @error('phone')
+    {{$message}}
+    @enderror
   <input type="text" id="age" name="age" value="Doe" class="form-control"><br><br>
   <input type="submit" value="Submit">
 </form> 
