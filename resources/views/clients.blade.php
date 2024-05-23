@@ -12,6 +12,7 @@
 @include('includes.nav')
 <div class="container">
   <h2>Clients Data</h2>
+  
   <table class="table table-hover">
     <thead>
       <tr>
@@ -19,6 +20,9 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Website</th>
+        <th>active</th>
+        <th>city</th>
+        <th>img</th>
         <th>edit</th>
         <th>show</th>
         <th>delete</th>
@@ -31,6 +35,9 @@
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
+        <td>{{$client->active ? "yes":"no"}}</td>
+        <td>{{$client->city}}</td>
+        <td>{{$client->img}}</td>
         <td><a href="{{route('editclient',$client->id)}}">edit</a></td>
         <td><a href="{{route('showclient',$client->id)}}">show</a></td>
       <td>

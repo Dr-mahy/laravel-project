@@ -3,6 +3,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <body>
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -24,44 +25,52 @@
       </ul>
     </div>
   </nav>
-<h2>HTML Forms</h2>
+<h2 style="text-align: center">insert client</h2>
 
-<form action="{{route('insertclient')}}" method="post">
+<form class="container" action="{{route('insertclient')}}" method="post" enctype="multipart/form-data">
     @csrf
   <label for="fname">First name:</label><br>
-  <p style="color:darkmagenta">
-  @error('clientname')
-  {{$message}}
-  @enderror
-  <p >
-  <input type="text" id="fname" name="clientname" value="John" class="form-control"><br>
+      @error('clientname')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+  <input type="text" id="fname" name="clientname" value="{{old('clientname')}}" class="form-control"><br>
   <label for="phone">phone:</label><br>
-  <p>
-    @error('phone')
-    {{$message}}
-    @enderror
-    <p>
-  <input type="text" id="phone" name="phone" value="Doe" class="form-control"><br><br>
+      @error('phone')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+  <input type="text" id="phone" name="phone" value="{{old('phone')}}" class="form-control"><br><br>
   <label for="email">email:</label><br>
-  <p>
-    @error('email')
-    {{$message}}
-    @enderror
-    <p>
-  <input type="text" id="email" name="email" value="Doe" class="form-control"><br><br>
+      @error('email')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+  <input type="text" id="email" name="email" value="{{old('email')}}" class="form-control"><br><br>
   <label for="website">site:</label><br>
-  <p>
-    @error('website')
-    {{$message}}
-    @enderror
-    <p>
-  <input type="text" id="lname" name="website" value="Doe" class="form-control"><br><br>
+      @error('website')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+  <input type="text" id="lname" name="website" value="{{old('website')}}" class="form-control"><br><br>
+  <label for="city">City:</label><br>
+      @error('city')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+    <select name="city" id="city" class="form-control">
+      <option value="">Please Select City</option>
+      <option value="cairo"{{ old('city') == 'cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza"{{ old('city') == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex"{{ old('city') == 'Alex' ? 'selected' : '' }}>Alex</option>
+    </select>
+    <br><br>
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" name="active" {{ old('active') ? 'checked' : '' }}><br><br>
+
+    <label for="img">img:</label><br>
+    <input type="file" id="img" name="img" class="form-control" {{ old('img') }}><br><br>
 
 
   <input type="submit" value="Submit">
 </form> 
-
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+{{-- 
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p> --}}
 
 </body>
 </html>
