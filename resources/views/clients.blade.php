@@ -37,7 +37,7 @@
         <td>{{$client->website}}</td>
         <td>{{$client->active ? "yes":"no"}}</td>
         <td>{{$client->city}}</td>
-        <td>{{$client->img}}</td>
+        <td><img  style="width:50px"src="{{asset('assets/img/' . $client->img)}}" alt=""></td>
         <td><a href="{{route('editclient',$client->id)}}">edit</a></td>
         <td><a href="{{route('showclient',$client->id)}}">show</a></td>
       <td>

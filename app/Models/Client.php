@@ -17,5 +17,6 @@ class Client extends Model
         'city',
         'active',
         'img',
+        
     ];
 }

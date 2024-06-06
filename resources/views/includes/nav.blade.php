@@ -15,6 +15,8 @@
         </li>
         <li class="{{request()->is('trashedclients') ? 'active' : ''}}"><a href="{{route('trashedclients')}}">trash</a></li>
         <li><a href="#">Page 3</a></li>
+        @yield('menue')
+        @stack('submenue')
       </ul>
     </div>
   </nav>

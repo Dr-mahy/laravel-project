@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
-    private $columns=['clientname','phone','email','website','city','active','img'];
+    use UploadFile;
+    // private $columns=['clientname','phone','email','website','city','active','img'];
     /**
      * Display a listing of the resource.
      */
@@ -108,22 +110,28 @@ class ClientController extends Controller
             'email'=>'required|email:rfc',
             'website'=>'required',
             'city'=>'required|max:30',
+            'img'=>'required',
             
             ]
             ,$messages
         );
             // $data['img']=$request->img;
-            $data['active']=isset($request->active);
+            // $data['active']=isset($request->active);
+            // $data
+            // if($request->hasfile('img')){
+            //     $destination='assets/img'.$request->img;
+            //     if(file::exists($destination)){
+            //         file::delete($destination);
+            //     }
+            // $imgExt = $request->img->getClientOriginalExtension();
+            // $fileName=time().'.'.$imgExt;
+            // $path='assets/img';
+            // $request->img->move($path,$fileName);
+            // $data['img']=$fileName;}
             if($request->hasfile('img')){
-                $destination='assets/img'.$request->img;
-                if(file::exists($destination)){
-                    file::delete($destination);
-                }
-            $imgExt = $request->img->getClientOriginalExtension();
-            $fileName=time().'.'.$imgExt;
-            $path='assets/img';
-            $request->img->move($path,$fileName);
-            $data['img']=$fileName;}
+                $fileName=$this->upload($request->img,'assets/img');
+                $data['img']=$fileName;
+            }
 
     //    Client::where('id',$id)->update($request->only($this->columns));
         client::where('id',$id)->update($data);

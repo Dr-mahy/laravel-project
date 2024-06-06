@@ -43,9 +43,9 @@
       @enderror
     <select name="city" id="city" class="form-control">
       <option value="">Please Select City</option>
-      <option value="cairo" {{ $client->city||old('cairo')== "cairo" ? "selected" : "''" }}>Cairo</option>
-      <option value="Giza" {{ $client->city||old('Giza')== 'Giza' ? 'selected' : "''" }}>Giza</option>
-      <option value="Alex" {{ $client->city||old('Alex')== 'Alex' ? 'selected' : "" }}>Alex</option>
+      <option value="cairo" {{ $client->city == "cairo" ? "selected" : "''" }}>Cairo</option>
+      <option value="Giza" {{ $client->city== 'Giza' ? 'selected' : "''" }}>Giza</option>
+      <option value="Alex" {{ $client->city== 'Alex' ? 'selected' : "" }}>Alex</option>
     </select>
     <br><br>
     <label for="active">Active:</label>

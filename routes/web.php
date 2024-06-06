@@ -38,6 +38,9 @@ Route::get('mercedes',function(){
 Route::get('form1',function(){
     return view('form1');
 });
+Route::get('stack',function(){
+    return view('stacked');
+});
 Route::post('recform1',function(){
     return $_POST['fname'] ." ". $_POST['lname'];
     // return "recieved";
