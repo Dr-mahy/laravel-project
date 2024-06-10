@@ -10,5 +10,7 @@
     <h1><strong>client:</strong>{{$student->name}}</h1>
     <hr>
     <h1><strong>phone:</strong>{{$student->age}}</h1>
+    <hr>
+    <h1><strong>phone:</strong>{{$student->teacher->teacher}}</h1>
 </body>
 </html>

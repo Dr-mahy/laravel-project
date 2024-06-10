@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone', 25);
             $table->string('email', 100);
             $table->string('website', 100);
-            $table->string('city', 100);
+            $table->foreignId('city_id')->constrained('cities');
             $table->boolean('active', 30);
             $table->string('img', 100);
             $table->softDeletes();

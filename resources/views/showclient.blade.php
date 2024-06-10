@@ -16,5 +16,7 @@
     <hr>
     <h1><strong>website:</strong>{{$client->website}}</h1>
     <hr>
+    <h1><strong>city:</strong>{{$client->city->city}}</h1>
+    <hr>
 </body>
 </html>

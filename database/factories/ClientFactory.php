@@ -17,14 +17,14 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'clientname'=>"name",
-        'phone'=>"name",
-        'email'=>"name",
-        'website'=>"name",
-        'city'=>"name",
-        'active'=>"1",
-        'img'=>"name",
-        'address'=>"name",
+         'clientName' => fake()->name(),
+            'phone' => fake()->phoneNumber(),
+            'email' => fake()->unique()->safeEmail(),
+            'website' => fake()->url(),
+            'city_id' => fake()->numberBetween(1, 20),
+            'img' => fake()->imageUrl(640, 480),
+            'active' => fake()->numberBetween(0, 1),
+            'address' => fake()->address(),
         ];
     }
 }

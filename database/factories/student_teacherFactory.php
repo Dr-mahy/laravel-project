@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Student>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\student_teacher>
  */
-class StudentFactory extends Factory
+class student_teacherFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'age' =>  fake()->numberBetween(0, 100),
+            'student_id' => fake()->randomDigit(),
+            'teacher_id' => fake()->randomDigit(),
         ];
     }
 }
