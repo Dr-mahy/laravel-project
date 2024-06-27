@@ -6,6 +6,8 @@
       <ul class="nav navbar-nav">
         <li class="{{request()->is('addclient') ? "active" : ""}}"><a href="{{route('addclient')}}">add</a></li>
         <li class="{{request()->is('clients') ? 'active' : ''}}"><a href="{{route('clients')}}">clients</a></li>
+        <li class=""><a href="{{ LaravelLocalization::getLocalizedURL('en') }}">en</a></li>
+        <li class=""><a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">ar</a></li>
         {{-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a> --}}
           {{-- <ul class="dropdown-menu">
             <li><a href="#">Page 1-1</a></li>

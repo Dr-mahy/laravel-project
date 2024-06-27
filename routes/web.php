@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 Route::get('insertclient',[ClientController::class,'store']);
 Route::get('test20',[Mycontroller::class,'my_data']);
 Route::post('studentdata',[StudentController::class,'store'])->name('studentdata');
@@ -18,6 +23,7 @@ Route::delete('forcedelstudents/{id}',[StudentController::class,'forcedelete'])-
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('mahy/{id?}',function($id=0){
     return "welcome to my website" .$id;
 })->whereNumber('id');
@@ -55,7 +61,7 @@ Route::post('recform1',function(){
 // })->name('inputdata');
 Route::get('addclient', [ClientController::class,'create'])->name('addclient');
 Route::post('insertclient',[ClientController::class,'store'])->name('insertclient');
-Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('clients',[ClientController::class,'index'])->middleware('verified')->name('clients');
 Route::get('editclient/{id}',[ClientController::class,'edit'])->name('editclient');
 Route::put('updateclient/{id}',[ClientController::class,'update'])->name('updateclient');
 Route::get('showclient/{id}',[ClientController::class,'show'])->name('showclient');
@@ -64,3 +70,12 @@ Route::get('trashedclients',[ClientController::class,'trash'])->name('trashedcli
 Route::get('restoreclients/{id}',[ClientController::class,'restore'])->name('restoreclients');
 Route::delete('deleteclients/{id}',[ClientController::class,'forcedelete'])->name('deleteclients');
 Route::get('addstudent',[StudentController::class,'create'])->name('addstudent');
+Route::get('session',[MyController::class,'myval'])->name('session');
+Route::get('mysession',[MyController::class,'restoreval'])->name('mysession');
+Route::get('delsession',[MyController::class,'deleteval'])->name('delsession');
+Route::get('sendclientmail',[MyController::class,'sendclientmail'])->name('sendemail');
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});

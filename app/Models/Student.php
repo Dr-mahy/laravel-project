@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Student;
 
 class Student extends Model
 {
@@ -15,6 +16,6 @@ class Student extends Model
     ];
 
     public function teacher(){
-        return $this->belongsToMany(Teacher::class );
+        return $this->belongsToMany(Teacher::class,'student_teacher' );
     }
 }
