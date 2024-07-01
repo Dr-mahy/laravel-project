@@ -149,7 +149,7 @@ class ClientController extends Controller
     }
     // trash
     public function trash()
-    {
+    { 
       $trashed=client::onlyTrashed()->get();
       return view('trashedclients',compact('trashed'));
     }
